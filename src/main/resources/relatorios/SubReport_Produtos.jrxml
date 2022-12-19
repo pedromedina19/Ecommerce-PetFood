@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SubReport_Produtos" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="66cf24cb-08f5-4341-9739-4a526f327b32">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Petfood - Connection BD"/>
+	<parameter name="codigo_marca" class="java.lang.Long"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT id,
+	categoria,
+	custo,
+	descricao,
+	nome,
+	peso,
+	quantidadeestoque,
+	valorvenda,
+	nomeimagem,
+	status,
+	id_marca
+FROM produtos
+WHERE id_marca = $P{codigo_marca}]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtos"/>
+	</field>
+	<field name="categoria" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="categoria"/>
+		<property name="com.jaspersoft.studio.field.label" value="categoria"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtos"/>
+	</field>
+	<field name="custo" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.name" value="custo"/>
+		<property name="com.jaspersoft.studio.field.label" value="custo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtos"/>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.label" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtos"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtos"/>
+	</field>
+	<field name="peso" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.name" value="peso"/>
+		<property name="com.jaspersoft.studio.field.label" value="peso"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtos"/>
+	</field>
+	<field name="quantidadeestoque" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="quantidadeestoque"/>
+		<property name="com.jaspersoft.studio.field.label" value="quantidadeestoque"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtos"/>
+	</field>
+	<field name="valorvenda" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.name" value="valorvenda"/>
+		<property name="com.jaspersoft.studio.field.label" value="valorvenda"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtos"/>
+	</field>
+	<field name="nomeimagem" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nomeimagem"/>
+		<property name="com.jaspersoft.studio.field.label" value="nomeimagem"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtos"/>
+	</field>
+	<field name="status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="status"/>
+		<property name="com.jaspersoft.studio.field.label" value="status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtos"/>
+	</field>
+	<field name="id_marca" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="id_marca"/>
+		<property name="com.jaspersoft.studio.field.label" value="id_marca"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtos"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="140" splitType="Stretch">
+			<textField>
+				<reportElement x="69" y="5" width="506" height="20" uuid="a77723b4-5cd0-4e53-9140-e1a747d70354"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="5" width="40" height="20" uuid="cb8d260b-b163-4b2d-8b5b-1490d46b8f0d">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nome: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="95" y="35" width="80" height="20" uuid="6aa9d5ab-af47-40ca-956e-93224c784928"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{categoria}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="35" width="70" height="20" uuid="9090b48f-1f0f-4a32-95e8-ae1eb17bf2c7">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Categoria: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="315" y="64" width="80" height="19" uuid="b788876a-42f1-4edb-be32-06d519a882c2">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["R$ "+ $F{custo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="225" y="64" width="90" height="20" uuid="fbdcfef2-455e-4cc0-9280-7384a0535796">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Custo por Kg: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="71" y="65" width="80" height="19" uuid="dc33ddb2-0120-49a0-90c9-8b30ad8ef6de"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{peso} + "Kg"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="64" width="50" height="20" uuid="3ee20910-1e6b-4ea4-9af8-2f3599836218">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Peso: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="325" y="35" width="70" height="20" uuid="cdb3b0a6-e849-4d0b-9fd0-e3886a9d6481"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["R$ "+$F{valorvenda}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="225" y="35" width="100" height="20" uuid="f8f2829b-114b-40fd-be43-c33cf1a309c1"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Valor de Venda: ]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="165" y="128" width="195" height="1" uuid="fbd980b3-789e-4554-9d4f-f3fa27890c9e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="173" y="91" width="250" height="20" uuid="5d68072b-c6bf-4b9b-a302-ecf289375f7c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantidadeestoque} + " Unidades"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="91" width="160" height="20" uuid="134c567f-6ec5-4277-8c86-d54b978d4276">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Quantidade em Estoque:]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

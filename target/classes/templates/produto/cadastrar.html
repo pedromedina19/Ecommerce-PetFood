@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org">
+
+<head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="../css/index.css">
+	<!-- AlertifyJS CSS -->
+	<link rel='stylesheet' type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/alertify.min.css">
+	<link rel='stylesheet' type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/themes/bootstrap.min.css">
+	<!-- flatpickr CSS -->
+	<link rel='stylesheet' type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>PetFood - Cadastrar Produtos</title>
+</head>
+
+<body>
+	<div th:replace="~{layout/fragments/navbar :: navbar}"></div>
+
+	<main>
+		<div class="container">
+			<h2 class="mb-3 mt-3">Cadastrar Produtos</h2>
+			<hr>
+			<form th:action="@{/produtos/cadastrar}" method="post" th:object="${produto}">
+				<div class="row">
+					<div class="col-sm-12 col-md-6">
+						<fieldset class="row">
+							<legend>Dados do Produto</legend>
+							<div class="mb-3 col-md-12">
+								<label for="name" class="form-label">Nome do Produto</label>
+								<input type="text" class="form-control" th:field="*{nome}" th:errorclass="is-invalid" placeholder="Ração Grosbilda">
+								<span class="invalid-feedback" th:if="${#fields.hasErrors('nome')}" th:each="erro : ${#fields.errors('nome')}" th:text="${erro} + '. '"></span>
+							</div>
+							<div class="col-md-12 mb-3">
+								<label for="longDesc">Descrição Completa</label>
+								<textarea class="form-control text-muted" style="height: 70px;"
+										  th:field="*{descricao}" th:errorclass="is-invalid">Descrição Completa</textarea>
+								<span class="invalid-feedback" th:if="${#fields.hasErrors('descricao')}" th:each="erro : ${#fields.errors('descricao')}" th:text="${erro} + '. '"></span>
+							</div>
+
+							<div class="mb-3 col-md-6">
+								<label for="weight" class="form-label">Peso - Kg</label>
+								<input type="text" class="form-control" th:field="*{peso}" th:errorclass="is-invalid" placeholder="99,9">
+								<span class="invalid-feedback" th:if="${#fields.hasErrors('peso')}" th:each="erro : ${#fields.errors('peso')}" th:text="${erro} + '. '"></span>
+							</div>
+							<div class="mb-3 col-md-6">
+								<label for="category">Categorias</label>
+								<select class="custom-select" id="categoria" name="categoria">
+									<option th:each="c : ${categoria}" th:value="${c}"
+											th:text="${c.descricao}">
+									</option>
+								</select>
+							</div>
+							<div class="mb-3 col-md-12">
+								<label for="">Marcas</label>
+								<select class="custom-select" id="marca" name="marca">
+									<option th:each="m : ${marca}" th:value="${m.id}" th:text="${m.nome}">
+									</option>
+								</select>
+							</div>
+						</fieldset>
+					</div>
+					<div class="col-sm-12 col-md-6">
+						<fieldset class="row">
+							<legend>Financeiro</legend>
+							<div class="mb-3 col-md-6">
+								<label for="cost" class="form-label">Custo - R$/Kg</label>
+								<input type="text" class="form-control" th:field="*{custo}" th:errorclass="is-invalid">
+								<span class="invalid-feedback" th:if="${#fields.hasErrors('custo')}" th:each="erro : ${#fields.errors('custo')}" th:text="${erro} + '. '"></span>
+							</div>
+							<div class="mb-3 col-md-6">
+								<label for="price" class="form-label">Preço - R$</label>
+								<input type="text" class="form-control" th:field="*{valorVenda}" th:errorclass="is-invalid">
+								<span class="invalid-feedback" th:if="${#fields.hasErrors('valorVenda')}" th:each="erro : ${#fields.errors('valorVenda')}" th:text="${erro} + '. '"></span>
+							</div>
+							<div class="col col-md-8 mb-3">
+								<label for="stock" class="form-check-label">Quantidade em Estoque</label>
+								<input class="form-control" type="text" th:field="*{quantidadeEstoque}" th:errorclass="is-invalid">
+								<span class="invalid-feedback" th:if="${#fields.hasErrors('quantidadeEstoque')}" th:each="erro : ${#fields.errors('quantidadeEstoque')}" th:text="${erro} + '. '"></span>
+							</div>
+						</fieldset>
+						<fieldset class="row">
+							<legend>Imagem</legend>
+							<div class="col-sm-12 mb-3">
+								<label for="mainImg" class="form-label">Imagem Principal</label>
+								<input type="url" class="form-control" th:field="*{nomeImagem}" th:errorclass="is-invalid">
+								<span class="invalid-feedback" th:if="${#fields.hasErrors('nomeImagem')}" th:each="erro : ${#fields.errors('nomeImagem')}" th:text="${erro} + '. '"></span>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+				<hr>
+				<div class="mb-3">
+					<a class="btn btn-light btn-outline-danger" th:href="@{/usuarios/meusdados}">Cancelar</a>
+					<input type="submit" value="Confirmar" class="btn btn-danger">
+				</div>
+			</form>
+			<div th:if="${notificacao != null}" th:object="${notificacao}">
+				<input type="hidden" id="mensagem" th:value="*{mensagem}">
+				<input type="hidden" id="tipo" th:value="*{tipo}">
+				<input type="hidden" id="intervalo" th:value="*{intervalo}">
+			</div>
+		</div>
+	</main>
+	<footer>
+		<div th:replace="~{layout/fragments/rodape :: rodape}"></div>
+	</footer>
+	<!-- AlertifyJS JS -->
+	<script src="../../static/js/vendors/alertifyjs/alertify.min.js" th:src="@{/js/vendors/alertifyjs/alertify.min.js}"></script>
+	<!-- flatpickr JS -->
+	<script src="../../static/js/vendors/flatpickr/flatpickr.js" th:src="@{/js/vendors/flatpickr/flatpickr.js}"></script>
+	<script src="../../static/js/vendors/flatpickr/pt.js" th:src="@{/js/vendors/flatpickr/pt.js}"></script>
+	<!-- CodigoNinjaDoGodoi JS -->
+	<script src="../../static/js/codigoninjadogodoi.js" th:src="@{/js/codigoninjadogodoi.js}"></script>
+</body>
+
+</html>

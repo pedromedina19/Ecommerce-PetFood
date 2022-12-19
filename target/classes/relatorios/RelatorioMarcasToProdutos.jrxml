@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioMarcasToProdutos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="943aa66c-8e01-4468-a0a8-951db5ee3296">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="bWFyY2EgLDE1LDE1LGMxNTIzZjViLTg2MzEtNGE1NC05NzU3LTlmNzk0ZmVkYjAzNTs="/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Petfood - Connection BD"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT id,
+	descricao,
+	imagem,
+	nome,
+	status
+FROM marca
+ORDER BY nome ASC]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="marca"/>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.label" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="marca"/>
+	</field>
+	<field name="imagem" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="imagem"/>
+		<property name="com.jaspersoft.studio.field.label" value="imagem"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="marca"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="marca"/>
+	</field>
+	<field name="status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="status"/>
+		<property name="com.jaspersoft.studio.field.label" value="status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="marca"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="85" splitType="Stretch">
+			<staticText>
+				<reportElement x="220" y="10" width="107" height="30" uuid="a6a9d448-9c91-4f48-b6ec-78298667ab02"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Petfood]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="127" y="40" width="300" height="30" uuid="60834ac0-f7cf-4811-9d82-c2842ce3d9c2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Produtos por Marcas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="156" splitType="Stretch">
+			<textField>
+				<reportElement x="50" y="10" width="100" height="20" uuid="0cab8c78-2e49-4c06-b1ef-2af676365bae"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="10" width="48" height="20" uuid="de61bea2-7e0f-422f-87ba-93f8f187e4be"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Marca: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="180" y="10" width="67" height="20" uuid="3bf49d9b-52e3-4d52-ae17-024c8a498cec"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["#00"+$F{id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="150" y="10" width="30" height="20" uuid="5a3080ed-50cb-4080-a7ec-b0b7fa4b5afc"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Ref: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="30" width="555" height="40" uuid="c75f1463-173f-44f8-92d9-b1cd52f88dd3"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="80" y="76" width="389" height="1" uuid="12f54fa8-c401-4f4e-98f1-56b175a20755"/>
+			</line>
+			<staticText>
+				<reportElement x="236" y="81" width="82" height="23" uuid="2c72443b-8f3a-4cee-aeae-6afff7c1735e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Produtos]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="4" y="110" width="552" height="31" uuid="334a4c21-535a-4b7f-a970-849b51b5e619"/>
+				<subreportParameter name="codigo_marca">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["src/main/resources/relatorios/SubReport_Produtos.jasper"]]></subreportExpression>
+			</subreport>
+			<line>
+				<reportElement positionType="Float" x="0" y="148" width="556" height="1" uuid="87452406-e6a9-488e-aceb-42e6b85ff997"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="27" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="1" y="3" width="127" height="20" uuid="fcf2ddf4-5669-4ee7-9d15-3579bf0832c5"/>
+				<textFieldExpression><![CDATA[java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("dd", new java.util.Locale ("pt","BR"))) + " de " + java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("MMMM", new java.util.Locale ("pt","BR"))) + " de " + java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("yyyy", new java.util.Locale ("pt","BR")))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="5" width="64" height="16" uuid="8cdcdc1a-90ae-404b-85a0-626eb01a5c0a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="496" y="5" width="58" height="17" uuid="da890206-4189-4c33-9ce0-685b18e7797f"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

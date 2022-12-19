@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <!-- AlertifyJS CSS -->
+    <link rel='stylesheet' type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/alertify.min.css">
+    <link rel='stylesheet' type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/themes/bootstrap.min.css">
+    <!-- flatpickr CSS -->
+    <link rel='stylesheet' type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>PetFood - Marcas</title>
+    <!-- <link rel="stylesheet" href="../../static/css/page.css"> -->
+</head>
+
+<body>
+<div th:replace="~{layout/fragments/navbar :: navbar}"></div>
+<div class="container">
+    <h1>Cadastrar Marcas</h1>
+    <br>
+    <form th:action="@{/marcas/cadastrar}" th:object="${marca}" method="post">
+        <div class="row">
+            <div class=" col-12 col-md-4">
+                <label for="name" class="form-label">Nome da Marca</label>
+                <input type="text" name="name" class="form-control" th:field="*{nome}" th:errorclass="is-invalid">
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('nome')}" th:each="erro : ${#fields.errors('nome')}" th:text="${erro} + '. '"></span>
+            </div>
+            <div class="col-md-4">
+                <label for="imagem" class="form-label">Logo da Marca</label>
+                <input type="text" name="imagem" class="form-control" th:field="*{imagem}" th:errorclass="is-invalid">
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('nome')}" th:each="erro : ${#fields.errors('nome')}" th:text="${erro} + '. '"></span>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-8 mt-3">
+                <label for="descricao" class="form-label">Descrição da Marca</label>
+                <textarea name="descricao" class="form-control" th:field="*{descricao}"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mt-3">
+                <input type="submit" value="Confirmar" class="btn btn-danger btn-larger">
+            </div>
+        </div>
+    </form>
+    <div th:if="${notificacao != null}" th:object="${notificacao}">
+        <input type="hidden" id="mensagem" th:value="*{mensagem}">
+        <input type="hidden" id="tipo" th:value="*{tipo}">
+        <input type="hidden" id="intervalo" th:value="*{intervalo}">
+    </div>
+</div>
+<footer class="fixed-bottom">
+    <div th:replace="~{layout/fragments/rodape :: rodape}"></div>
+</footer>
+<!-- AlertifyJS JS -->
+<script src="../../static/js/vendors/alertifyjs/alertify.min.js" th:src="@{/js/vendors/alertifyjs/alertify.min.js}"></script>
+<!-- flatpickr JS -->
+<script src="../../static/js/vendors/flatpickr/flatpickr.js" th:src="@{/js/vendors/flatpickr/flatpickr.js}"></script>
+<script src="../../static/js/vendors/flatpickr/pt.js" th:src="@{/js/vendors/flatpickr/pt.js}"></script>
+<!-- CodigoNinjaDoGodoi JS -->
+<script src="../../static/js/codigoninjadogodoi.js" th:src="@{/js/codigoninjadogodoi.js}"></script>
+</body>
+
+</html>

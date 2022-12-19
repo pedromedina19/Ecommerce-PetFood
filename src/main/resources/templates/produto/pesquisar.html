@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org">
+
+<head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="../css/index.css">
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>PetFood - Cadastrar Produtos</title>
+</head>
+
+<body>
+<div th:replace="~{layout/fragments/navbar :: navbar}"></div>
+
+<main>
+	<div class="container">
+		<h2 class="mb-3 mt-3">Cadastrar Produtos</h2>
+		<hr>
+		<form th:action="@{/produtos/pesquisar}" method="get">
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<label for="codigo" class="form-label">Código</label>
+					<input type="number" id="id" name="id" class="form-control mb-3">
+
+					<label for="nome" class="form-label">Nome</label>
+					<input type="text" id="nome" name="nome" class="form-control mb-3">
+
+					<label for="descricao" class="form-label">Descrição</label>
+					<input type="text" id="descricao" name="descricao" class="form-control mb-3">
+
+					<label for="">Marcas</label>
+					<select class="custom-select mb-3" id="codigomarca" name="codigomarca">
+						<option value="" selected="selected">Não Selecionada</option>
+						<option th:each="m : ${marca}" th:value="${m.id}" th:text="${m.nome}">
+						</option>
+					</select>
+					<label for="category">Categorias</label>
+					<select class="custom-select mb-3 " id="categoria" name="categoria">
+						<option value="" selected="selected">Não Selecionada</option>
+						<option th:each="c : ${categoria}" th:value="${c}"
+								th:text="${c.descricao}">
+						</option>
+					</select>
+				</div>
+
+				<div class="col-md-6 ">
+					<label for="menorPreco" class="form-label">Menor Preço - R$</label>
+					<input type="number" name="menorPreco" id="menorPreco" step=any class="form-control mb-3">
+
+					<label for="maiorPreco" class="form-label">Maior Preço - R$</label>
+					<input type="number" name="maiorPreco" id="maiorPreco" step=any class="form-control mb-3">
+				</div>
+			</div>
+
+			<!-- <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <fieldset class="row">
+                        <legend>Dados do Produto</legend>
+                        <div class="mb-3 col-md-12">
+                            <label for="name" class="form-label">Nome do Produto</label>
+                            <input type="text" class="form-control" th:field="*{nome}"
+                                placeholder="Ração Grosbilda">
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="longDesc">Descrição Completa</label>
+                            <textarea class="form-control text-muted" style="height: 70px;"
+                                th:field="*{descricao}">Descrição Completa</textarea>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="weight" class="form-label">Peso - Kg</label>
+                            <input type="text" class="form-control" th:field="*{peso}" placeholder="99,9">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="category">Categorias</label>
+                            <select class="custom-select" id="categoria" name="categoria">
+                                <option th:each="c : ${categoria}" th:value="${c}"
+                                    th:text="${c.descricao}">
+                                </option>
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-12">
+                            <label for="">Marcas</label>
+                            <select class="custom-select" id="marca" name="marca">
+                                <option th:each="m : ${marca}" th:value="${m.id}" th:text="${m.nome}">
+                                </option>
+                            </select>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <fieldset class="row">
+                        <legend>Financeiro</legend>
+                        <div class="mb-3 col-md-6">
+                            <label for="cost" class="form-label">Custo - R$/Kg</label>
+                            <input type="text" class="form-control" th:field="*{custo}">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="price" class="form-label">Preço - R$</label>
+                            <input type="text" class="form-control" th:field="*{valorVenda}">
+                        </div>
+                        <div class="col col-md-8 mb-3">
+                            <label for="stock" class="form-check-label">Quantidade em Estoque</label>
+                            <input class="form-control" type="text" th:field="*{quantidadeEstoque}">
+                        </div>
+                    </fieldset>
+                    <fieldset class="row">
+                        <legend>Imagem</legend>
+                        <div class="col-sm-12 mb-3">
+                            <label for="mainImg" class="form-label">Imagem Principal</label>
+                            <input type="url" class="form-control" th:field="*{nomeImagem}">
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <hr> -->
+			<div class="mb-3">
+				<a class="btn btn-light btn-outline-danger" th:href="@{/usuarios/meusdados}">Cancelar</a>
+				<input type="submit" value="Confirmar" class="btn btn-danger">
+			</div>
+		</form>
+	</div>
+</main>
+<footer>
+	<div th:replace="~{layout/fragments/rodape :: rodape}"></div>
+</footer>
+</body>
+
+</html>

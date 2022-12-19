@@ -1,0 +1,1 @@
+Spring Framework, Spring Boot, Spring Jpa, Thymeleaf, Bootstrap e PostgreSQL.
