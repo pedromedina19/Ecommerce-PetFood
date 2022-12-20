@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "endereco")
@@ -19,11 +21,15 @@ public class Endereco implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
-    private String rua; 
+	@NotBlank(message = "obrigatório")
+    private String rua;
+	@NotNull(message = "obrigatório")
 	private Integer numero;
+	@NotBlank(message = "obrigatório")
 	private String bairro;
+	@NotBlank(message = "obrigatório")
 	private String cidade;
+	@NotBlank(message = "obrigatório")
 	private String cep;
 	private String complemento;
 	@Enumerated(EnumType.STRING)

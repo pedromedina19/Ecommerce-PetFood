@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "cliente")
@@ -26,13 +28,17 @@ public class Cliente implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
+	@NotBlank(message = "obrigatório")
 	private String nome;
 	private String cpf;
+	@NotBlank(message = "obrigatório")
 	private String email;
+	@NotBlank(message = "obrigatório")
 	private String senha;
+	@NotNull(message = "obrigatório")
 	@Column(name = "data_nascimento")
 	private Date dataNascimento;
+	@NotBlank(message = "obrigatório")
 	private String telefone;
 	@ManyToOne
 	@JoinColumn(name = "id_endereco")

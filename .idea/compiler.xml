@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Ecommerce-Petfood" />
         <module name="Ecommerce_Petfood" />
         <module name="petfood" />
       </profile>
@@ -13,6 +14,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Ecommerce-Petfood" options="-parameters" />
       <module name="Ecommerce_Petfood" options="-parameters" />
       <module name="petfood" options="-parameters" />
     </option>
