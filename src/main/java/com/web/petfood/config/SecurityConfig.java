@@ -22,13 +22,12 @@ public class SecurityConfig {
 		http
 				.authorizeRequests()
 				// Qualquer um pode fazer requisições para essas URLs
-				.antMatchers("/css/**", "/js/**", "/images/**", "/", "/index.html", "/produtos/pesquisarproduto", "/clientes/abrircadastrar","/clientes/cadastrar").permitAll()
+				.antMatchers("/css/**", "/js/**", "/images/**", "/", "/index.html", "/produtos/pesquisarproduto", "/clientes/abrircadastrar","/clientes/cadastrar", "/produtos/abrirproduto").permitAll()
 				// Um usuário autenticado e com o papel ADMIN pode fazer requisições para essas
 				// URLs
-				.antMatchers("/relatorios/produtospormarcas", "/produtos/pesquisar", "/usuarios/cadastrar")
-				.hasRole("ADMIN")
-				.antMatchers("/produtos/abrircadastrar", "/marcas/cadastrar").hasAnyRole("ADMIN", "FUNCIONARIO")
-				.antMatchers("/produtos/addcarrinho").hasAnyRole("ADMIN", "CLIENTE")
+				.antMatchers("/relatorios/produtospormarcas", "/usuarios/cadastrar").hasRole("ADMIN")
+				.antMatchers("/produtos/abrircadastrar", "/marcas/cadastrar", "/produtos/pesquisar").hasAnyRole("ADMIN", "FUNCIONARIO")
+				//.antMatchers("/produtos/addcarrinho").hasAnyRole("ADMIN", "CLIENTE")
 				// .antMatchers("URL").hasAnyRole("ADMIN", "USUARIO")
 				// Todas as outras requisições exigem um usuário autenticado
 				.anyRequest().authenticated()

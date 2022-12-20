@@ -1,13 +1,16 @@
-
-
 <!doctype html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org">
 <head>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-	<link rel="stylesheet" href="../css/index.css">
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="../css/index.css">
+	<!-- AlertifyJS CSS -->
+	<link rel='stylesheet' type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/alertify.min.css">
+	<link rel='stylesheet' type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/themes/bootstrap.min.css">
+	<!-- flatpickr CSS -->
+	<link rel='stylesheet' type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>PetFood - Cadastro</title>
 </head>
 <body>
@@ -17,42 +20,48 @@
 	<div class="container">
 		<h2 class="mb-3 mt-3">Cadastrar</h2>
 		<hr>
-		<form th:action="@{/clientes/cadastrar}" method="post" th:object="${cliente}">
+		<form th:action="@{/clientes/cadastrar}" method="post" th:object="${usuario}">
 			<div class="row">
 				<div class="col-sm-12 col-md-6">
 					<fieldset class="row">
 						<legend>Dados Pessoais</legend>
 						<div class="mb-3 col-md-12">
-							<label for="name" class="form-label">Nome</label>
-							<input type="text" class="form-control" id="name" placeholder="Grosbilda Silva" th:field="*{nome}">
+							<label for="nome" class="form-label">Nome</label>
+							<input type="text" id="nome" th:field="*{nome}" autofocus="autofocus" class="form-control" th:errorclass="is-invalid">
+					<span class="invalid-feedback" th:if="${#fields.hasErrors('nome')}" th:each="erro : ${#fields.errors('nome')}" th:text="${erro} + '. '"></span>
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="cpf" class="form-label">CPF</label>
-							<input type="text" class="form-control" id="cpf" placeholder="000.000.000-00" th:field="*{cpf}">
+							<input type="text" class="form-control" id="cpf" placeholder="000.000.000-00">
 						</div>
 						<div class="col-md-4 mb-3">
 							<label for="dataNascimento" class="form-label">Data de Nascimento</label>
-							<input type="text" class="form-control" id="dataNascimento" th:field="*{dataNascimento}">
+							<input type="text" id="dataNascimento" th:field="*{dataNascimento}" class="form-control mb-4 componentedata" th:errorclass="is-invalid">
+							<span class="invalid-feedback" th:if="${#fields.hasErrors('dataNascimento')}" th:each="erro : ${#fields.errors('dataNascimento')}" th:text="${erro} + '. '"></span>
 						</div>
 					</fieldset>
 					<fieldset class="row">
 						<legend>Contatos</legend>
 						<div class="mb-3 col-md-6">
 							<label for="email" class="form-label">E-mail</label>
-							<input type="text" class="form-control" id="email" placeholder="usuario@email.com" th:field="*{email}">
+							<input type="email" id="email" th:field="*{email}" class="form-control" th:errorclass="is-invalid">
+					<span class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:each="erro : ${#fields.errors('email')}" th:text="${erro} + '. '"></span>
 						</div>
 						<div class="mb-3 col-md-4">
 							<label for="telefone" class="form-label">Telefone</label>
-							<input type="tel" class="form-control" id="telefone" placeholder="34900000000" th:field="*{telefone}">
+							<input type="tel" class="form-control" id="telefone" placeholder="34900000000">
 						</div>
 					</fieldset>
 					<fieldset class="row">
-						<legend>Senha de Acesso</legend>
+						<legend>Dados de Acesso</legend>
 						<div class="col-sm-12 mb-3">
+							<label for="nomeUsuario" class="form-label mt-3">Nome de usuário:</label>
+					<input type="text" id="nomeUsuario" th:field="*{nomeUsuario}" class="form-control" th:errorclass="is-invalid">
+					<span class="invalid-feedback" th:if="${#fields.hasErrors('nomeUsuario')}" th:each="erro : ${#fields.errors('nomeUsuario')}" th:text="${erro} + '. '"></span>
 							<label for="ref" class="form-label">Senha</label>
-							<input type="password" class="form-control" id="senha" th:field="*{senha}">
+							<input type="password" id="senha" th:field="*{senha}" class="form-control" th:errorclass="is-invalid">
+					<span class="invalid-feedback" th:if="${#fields.hasErrors('senha')}" th:each="erro : ${#fields.errors('senha')}" th:text="${erro} + '. '"></span>
 						</div>
-						<input type="hidden" name="papel" id="papel" th:field="*{papel}" th:value="${3}">
 					</fieldset>
 				</div>
 				<div class="col-sm-12 col-md-6">
@@ -106,5 +115,16 @@
 <footer>
 	<div th:replace="~{layout/fragments/rodape :: rodape}"></div>
 </footer>
+	<!-- Nao usamos
+	<th:block layout:fragment="scripts">
+		<script src="../static/js/index.js" th:src="@{/js/index.js}"></script>
+	</th:block> -->
+	<!-- AlertifyJS JS -->
+	<script src="../../static/js/vendors/alertifyjs/alertify.min.js" th:src="@{/js/vendors/alertifyjs/alertify.min.js}"></script>
+	<!-- flatpickr JS -->
+	<script src="../../static/js/vendors/flatpickr/flatpickr.js" th:src="@{/js/vendors/flatpickr/flatpickr.js}"></script>
+	<script src="../../static/js/vendors/flatpickr/pt.js" th:src="@{/js/vendors/flatpickr/pt.js}"></script>
+	<!-- CodigoNinjaDoGodoi JS -->
+	<script src="../../static/js/codigoninjadogodoi.js" th:src="@{/js/codigoninjadogodoi.js}"></script>
 </body>
 </html>

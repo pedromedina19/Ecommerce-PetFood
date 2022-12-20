@@ -37,11 +37,6 @@ public class MarcaController {
         return "marca/cadastrar";
     }
 
-    private void colocarMarcasModelo(Model model) {
-        List<Marca> marcas = marcaRepository.findByStatus(Status.ATIVO);
-        model.addAttribute("marcas", marcas);
-    }
-
     @PostMapping("/cadastrar")
     public String cadastrar(@Valid Marca marca, BindingResult resultado, Model model){
         if (resultado.hasErrors()) {
@@ -67,10 +62,16 @@ public class MarcaController {
 		return "marca/cadastrar";
 	}
 
-    // @GetMapping("/abrirdropdown")
-    // public String colocarItensNav(Categoria categoria, Marca marca){
+    @GetMapping("/abrirdropdown")
+    public String colocarItensNav(Marca marca, Model model){
+        colocarMarcasModelo(model);
+        return "layout/navbar";
+    }
 
-    //     return
-    // }
+    private void colocarMarcasModelo(Model model) {
+        List<Marca> marcas = marcaRepository.findByStatus(Status.ATIVO);
+        model.addAttribute("marcas", marcas);
+    }
+
 
 }

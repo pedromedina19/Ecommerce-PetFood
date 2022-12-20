@@ -36,12 +36,12 @@
 				</div>
 			</li>
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+				<a class="nav-link dropdown-toggle" th:href="@{/marcas/abrirdropdown}" id="navbarDropdownMenuLink" data-toggle="dropdown"
 				   aria-haspopup="true" aria-expanded="false">
 					Marcas
 				</a>
 				<div class="dropdown-menu">
-					<a class="dropdown-item">Whiskas</a>
+					<a class="dropdown-item" th:each="m : ${marca}" th:text="${m.nome}"></a>
 				</div>
 			</li>
 		</ul>
@@ -52,7 +52,7 @@
 				<i class="bi bi-search"></i>
 			</button>
 		</form>
-		<div class="d-flex mr-2">
+		<div class="d-flex mr-2" sec:authorize="isAuthenticated()">
 			<a th:href="@{carrinho/abrircarrinho}">
 				<button type="button" class="btn btn-outline-danger">
 					<i class="bi bi-basket2-fill"></i>

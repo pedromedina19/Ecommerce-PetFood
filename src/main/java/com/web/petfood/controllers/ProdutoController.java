@@ -100,7 +100,7 @@ public class ProdutoController {
 		Page<Produto> page = produtoRepository.pesquisar(filtro, pageable);
 		PageWrapper<Produto> pageWrapper = new PageWrapper<>(page, request);
 		model.addAttribute("page", pageWrapper);
-		System.out.println(page.getContent());
+		//System.out.println(page.getContent());
 		/* System.out.println(pageWrapper.getConteudo()); */
 		return "produto/mostrarprodutos";
 	}
@@ -111,7 +111,7 @@ public class ProdutoController {
 		Page<Produto> page = produtoRepository.pesquisar(filtro, pageable);
 		PageWrapper<Produto> pageWrapper = new PageWrapper<>(page, request);
 		model.addAttribute("page", pageWrapper);
-		System.out.println(page.getContent());
+		//System.out.println(page.getContent());
 		/* System.out.println(pageWrapper.getConteudo()); */
 		return "produto/mostrarprodutosnormal";
 	}
